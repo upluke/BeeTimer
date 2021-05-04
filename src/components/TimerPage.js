@@ -1,7 +1,17 @@
-import React from 'react'
+import React,{useState} from 'react'
 
 const TimerPage = () => {
-    return <h1>TImer</h1>
+    const [displayTime, setDisplayTime]=useState(9*60)
+
+    const formatTIme=(time)=>{
+        let minutes=Math.floor(time/60)
+        let seconds=time%60
+        console.log(typeof(minutes), seconds)
+        return(
+            (minutes<10?"0"+minutes: minutes)+":"+(seconds<10?"0"+seconds:seconds)
+        )
+    }
+    return <div>{formatTIme(displayTime)}</div>
 }
 
 export default TimerPage
