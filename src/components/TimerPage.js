@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import Length from './Length'
 
 const TimerPage = () => {
     const [displayTime, setDisplayTime]=useState(9*60)
@@ -11,7 +12,12 @@ const TimerPage = () => {
             (minutes<10?"0"+minutes: minutes)+":"+(seconds<10?"0"+seconds:seconds)
         )
     }
-    return <div>{formatTIme(displayTime)}</div>
+    return(
+    <div>
+        <Length/>
+        {formatTIme(displayTime)}
+    </div>
+    )
 }
 
 export default TimerPage
