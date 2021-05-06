@@ -14,7 +14,7 @@ const TimerPage = () => {
     }
     return(
     <div>
-        <Length/>
+        <Length title={"break length"} changeTime={null} type={"break"} time={null} formatTime={formatTIme} />
         {formatTIme(displayTime)}
     </div>
     )
