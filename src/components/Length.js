@@ -9,7 +9,7 @@ export default ({title, changeTime, type, time, formatTime}) => {
             <div>
                 <button onClick={()=>changeTime(-60,type)}>down</button>
                 <h3>{formatTime(time)}</h3>
-                <button>Up</button>
+                <button onClick={()=>changeTime(60,type)}>Up</button>
             </div>
         </div>
     ) 
