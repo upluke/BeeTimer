@@ -4,6 +4,7 @@ import Length from './Length'
 const TimerPage = () => {
     const [displayTime, setDisplayTime]=useState(9*60)
     const [breakTime, setBreakTime]=useState(3*60)
+    const [sessionTime, setSessionTime]=useState(4*60)
 
     const formatTIme=(time)=>{
         let minutes=Math.floor(time/60)
@@ -17,11 +18,14 @@ const TimerPage = () => {
     const changeTime=(amount, type)=>{
         if (type=="break"){
             setBreakTime((prev)=>prev+amount)
+        }else{
+            setSessionTime((prev)=>prev+amount)
         }
     }
     return(
     <div>
         <Length title={"break length"} changeTime={changeTime} type={"break"} time={breakTime} formatTime={formatTIme} />
+        <Length title={"session length"} changeTime={changeTime} type={"sessionTime"} time={sessionTime} formatTime={formatTIme} />
         {formatTIme(displayTime)}
     </div>
     )
