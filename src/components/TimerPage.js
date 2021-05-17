@@ -17,8 +17,14 @@ const TimerPage = () => {
 
     const changeTime=(amount, type)=>{
         if (type=="break"){
+            if (breakTime<=60&&amount<0){
+                return
+            }
             setBreakTime((prev)=>prev+amount)
         }else{
+            if (sessionTime<=60&&amount<0){
+                return
+            }
             setSessionTime((prev)=>prev+amount)
         }
     }
