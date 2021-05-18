@@ -5,6 +5,7 @@ const TimerPage = () => {
     const [displayTime, setDisplayTime]=useState(9*60)
     const [breakTime, setBreakTime]=useState(3*60)
     const [sessionTime, setSessionTime]=useState(4*60)
+    const [timerOn, setTimerOn]=useState(false)
 
     const formatTIme=(time)=>{
         let minutes=Math.floor(time/60)
@@ -26,6 +27,9 @@ const TimerPage = () => {
                 return
             }
             setSessionTime((prev)=>prev+amount)
+            if (!timerOn){
+                setDisplayTime(sessionTime+amount)
+            }
         }
     }
     return(
