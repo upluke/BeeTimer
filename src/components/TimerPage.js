@@ -34,9 +34,19 @@ const TimerPage = () => {
     }
     return(
     <div>
-        <Length title={"break length"} changeTime={changeTime} type={"break"} time={breakTime} formatTime={formatTIme} />
-        <Length title={"session length"} changeTime={changeTime} type={"sessionTime"} time={sessionTime} formatTime={formatTIme} />
+        <h1>Training Timer</h1>
+        <div>
+            <Length title={"break length"} changeTime={changeTime} type={"break"} time={breakTime} formatTime={formatTIme} />
+            <Length title={"session length"} changeTime={changeTime} type={"sessionTime"} time={sessionTime} formatTime={formatTIme} />
+        </div>
         {formatTIme(displayTime)}
+        <button>
+            {timerOn?(
+                <i>pause</i>
+            ):(
+                <i>play</i>
+            )}
+        </button>
     </div>
     )
 }
