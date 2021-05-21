@@ -32,6 +32,14 @@ const TimerPage = () => {
             }
         }
     }
+
+    const controlTime=()=>{}
+    const resetTime=()=>{
+        setDisplayTime(9*60)
+        setBreakTime(3*60)
+        setSessionTime(4*60)
+    }
+
     return(
     <div>
         <h1>Training Timer</h1>
@@ -40,12 +48,15 @@ const TimerPage = () => {
             <Length title={"session length"} changeTime={changeTime} type={"sessionTime"} time={sessionTime} formatTime={formatTIme} />
         </div>
         {formatTIme(displayTime)}
-        <button>
+        <button onClick={controlTime}>
             {timerOn?(
-                <i>pause</i>
+                "pause"
             ):(
-                <i>play</i>
+                "play"
             )}
+        </button>
+        <button onClick={resetTime}>
+            reset
         </button>
     </div>
     )
