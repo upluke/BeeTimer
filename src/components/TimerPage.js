@@ -6,6 +6,7 @@ const TimerPage = () => {
     const [breakTime, setBreakTime]=useState(3*60)
     const [sessionTime, setSessionTime]=useState(4*60)
     const [timerOn, setTimerOn]=useState(false)
+    const [onBreak, setOnBreak]=useState(false)
 
     const formatTIme=(time)=>{
         let minutes=Math.floor(time/60)
@@ -33,7 +34,27 @@ const TimerPage = () => {
         }
     }
 
-    const controlTime=()=>{}
+    const controlTime=()=>{
+        let second =1000;
+        let date=new Date().getTime();
+        let nextDate=new Date().getTime()+second
+        let onBreakVariable=onBreak
+        if(!timerOn){
+            let interval=setInterval(()=>{
+                date=new Date().getTime()
+                if (date>nextDate){
+                    setDisplayTime((prev)=>{
+                        return prev -1
+                    })
+                    nextDate+=second
+                }
+            },30)
+            localStorage.clear();
+            localStorage.setItem('interval-id',interval)
+        }
+        setTimerOn(!timerOn)
+    }
+
     const resetTime=()=>{
         setDisplayTime(9*60)
         setBreakTime(3*60)
