@@ -38,6 +38,7 @@ const TimerPage = () => {
         let second =1000;
         let date=new Date().getTime();
         let nextDate=new Date().getTime()+second
+        console.log(date,"**",nextDate)
         let onBreakVariable=onBreak
         if(!timerOn){
             let interval=setInterval(()=>{
@@ -51,6 +52,9 @@ const TimerPage = () => {
             },30)
             localStorage.clear();
             localStorage.setItem('interval-id',interval)
+        }
+        if(timerOn){
+            clearInterval(localStorage.getItem('interval-id'))
         }
         setTimerOn(!timerOn)
     }
