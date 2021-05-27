@@ -2,12 +2,18 @@ import React,{useState} from 'react'
 import Length from './Length'
 
 const TimerPage = () => {
-    const [displayTime, setDisplayTime]=useState(9*60)
-    const [breakTime, setBreakTime]=useState(3*60)
-    const [sessionTime, setSessionTime]=useState(4*60)
+    const [displayTime, setDisplayTime]=useState(3)
+    const [breakTime, setBreakTime]=useState(3)
+    const [sessionTime, setSessionTime]=useState(5)
     const [timerOn, setTimerOn]=useState(false)
     const [onBreak, setOnBreak]=useState(false)
+    const [breakAudio, setBreakAudio]=useState(new Audio('./breakTime.mp3'))
 
+    const playBreakSound=()=>{
+        breakAudio.currentTime=0;
+        breakAudio.play()
+    }
+ 
     const formatTIme=(time)=>{
         let minutes=Math.floor(time/60)
         let seconds=time%60
@@ -45,6 +51,17 @@ const TimerPage = () => {
                 date=new Date().getTime()
                 if (date>nextDate){
                     setDisplayTime((prev)=>{
+                        if(prev<=0 && !onBreakVariable){
+                            playBreakSound();
+                            onBreakVariable=true;
+                            setOnBreak(true);
+                            return breakTime
+                        }else if(prev<=0 && onBreakVariable){
+                            playBreakSound();
+                            onBreakVariable=false;
+                            setOnBreak(false);
+                            return sessionTime
+                        }
                         return prev -1
                     })
                     nextDate+=second
@@ -72,6 +89,7 @@ const TimerPage = () => {
             <Length title={"break length"} changeTime={changeTime} type={"break"} time={breakTime} formatTime={formatTIme} />
             <Length title={"session length"} changeTime={changeTime} type={"sessionTime"} time={sessionTime} formatTime={formatTIme} />
         </div>
+        <h3>{onBreak?"Break":"session"}</h3>
         {formatTIme(displayTime)}
         <button onClick={controlTime}>
             {timerOn?(
